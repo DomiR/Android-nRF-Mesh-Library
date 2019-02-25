@@ -29,6 +29,7 @@ import no.nordicsemi.android.meshprovisioner.MeshManagerApi;
 import no.nordicsemi.android.meshprovisioner.MeshProvisioningStatusCallbacks;
 import no.nordicsemi.android.meshprovisioner.utils.AuthenticationOOBMethods;
 import no.nordicsemi.android.meshprovisioner.utils.MeshParserUtils;
+import no.nordicsemi.android.meshprovisioner.utils.ParseInputOOBActions;
 import no.nordicsemi.android.meshprovisioner.utils.ParseOutputOOBActions;
 import no.nordicsemi.android.meshprovisioner.utils.ParseProvisioningAlgorithm;
 
@@ -95,7 +96,7 @@ public class ProvisioningStartState extends ProvisioningState {
                 provisioningPDU[6] = 0;
                 break;
             case INPUT_OOB_AUTHENTICATION:
-                provisioningPDU[5] = (byte) ParseOutputOOBActions.getOuputOOBActionValue(this.inputActionType);
+                provisioningPDU[5] = (byte) ParseInputOOBActions.getInputOOBActionValue(this.inputActionType);
                 provisioningPDU[6] = (byte) inputOOBSize;
                 break;
             case OUTPUT_OOB_AUTHENTICATION:
@@ -104,6 +105,7 @@ public class ProvisioningStartState extends ProvisioningState {
                 break;
 
         }
+        mUnprovisionedMeshNode.setProvisioningPDU(provisioningPDU);
         Log.v(TAG, "Provisioning start PDU: " + MeshParserUtils.bytesToHex(provisioningPDU, true));
 
         return provisioningPDU;

@@ -99,7 +99,7 @@ public class ParseInputOOBActions {
      * @param type input OOB type
      * @return Output OOB type description
      */
-    public static int getOuputOOBActionValue(final short type) {
+    public static int getInputOOBActionValue(final short type) {
         switch (type) {
             case PUSH:
                 return 0;

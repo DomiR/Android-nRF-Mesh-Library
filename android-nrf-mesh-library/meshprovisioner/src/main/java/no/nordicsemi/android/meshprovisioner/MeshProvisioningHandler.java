@@ -523,23 +523,14 @@ class MeshProvisioningHandler implements InternalProvisioningCallbacks {
             return capabilities;
     }
 
-
     private byte[] generateStartData() {
         final byte[] startData = new byte[5];
         startData[0] = ParseProvisioningAlgorithm.getAlgorithmValue(algorithm);
-        startData[1] = 0;//(byte) publicKeyType;
-        final short outputOobActionType = (byte) ParseOutputOOBActions.selectOutputActionsFromBitMask(outputOOBAction);
-        if (outputOobActionType == ParseOutputOOBActions.NO_OUTPUT) {
-            startData[2] = 0;
-            //prefer no oob
-            startData[3] = 0;
-            startData[4] = 0;
-        } else {
-            startData[2] = 0x02;
-            startData[3] = (byte) ParseOutputOOBActions.getOuputOOBActionValue(outputOobActionType);//(byte) ParseOutputOOBActions.getOuputOOBActionValue(outputOOBAction);
-            startData[4] = (byte) outputOOBSize;
-        }
-
+        startData[1] = 0; //(byte) publicKeyType;
+        final byte[] startPDU = mUnprovisionedMeshNode.getProvisioningPDU();
+        startData[2] = startPDU[4];
+        startData[3] = startPDU[5];
+        startData[4] = startPDU[6];
         return startData;
     }
 

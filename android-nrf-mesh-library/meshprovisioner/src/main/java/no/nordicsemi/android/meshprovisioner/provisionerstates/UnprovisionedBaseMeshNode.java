@@ -39,6 +39,7 @@ abstract class UnprovisionedBaseMeshNode implements Parcelable {
     boolean isProvisioned;
     boolean isConfigured;
     protected String nodeName = "My Node";
+    byte[] provisioningPDU;
     byte[] provisionerPublicKeyXY;
     byte[] provisioneePublicKeyXY;
     byte[] sharedECDHSecret;
