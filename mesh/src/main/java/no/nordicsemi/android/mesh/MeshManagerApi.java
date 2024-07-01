@@ -56,6 +56,7 @@ import no.nordicsemi.android.mesh.data.SceneDao;
 import no.nordicsemi.android.mesh.data.ScenesDao;
 import no.nordicsemi.android.mesh.logger.MeshLogger;
 import no.nordicsemi.android.mesh.provisionerstates.UnprovisionedMeshNode;
+import no.nordicsemi.android.mesh.transport.GenericAccessMessage;
 import no.nordicsemi.android.mesh.transport.MeshMessage;
 import no.nordicsemi.android.mesh.transport.NetworkLayerCallbacks;
 import no.nordicsemi.android.mesh.transport.ProvisionedMeshNode;
@@ -870,6 +871,10 @@ public class MeshManagerApi implements MeshMngrApi {
      */
     public final void deleteMeshNetworkFromDb(final MeshNetwork meshNetwork) {
         mMeshNetworkDb.delete(mMeshNetworkDao, meshNetwork);
+    }
+
+    public void createAccessPdu(final int source, final int dst, @NonNull final GenericAccessMessage msg) {
+        mMeshMessageHandler.createAccessMessage(source, dst, msg);
     }
 
     @Override

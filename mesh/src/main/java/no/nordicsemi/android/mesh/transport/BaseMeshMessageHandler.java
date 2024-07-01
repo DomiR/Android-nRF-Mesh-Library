@@ -236,6 +236,11 @@ public abstract class BaseMeshMessageHandler implements MeshMessageHandlerApi, I
         transportSparseArray.remove(address);
     }
 
+    public void createAccessMessage(final int src, final int dst, @NonNull final GenericAccessMessage msg) {
+        final AccessMessageState currentState = new AccessMessageState(src, dst, msg, getTransport(dst), this, mInternalTransportCallbacks, mStatusCallbacks);
+        currentState.executeSend();
+    }
+
     @Override
     public void createMeshMessage(final int src, final int dst, @Nullable final UUID label, @NonNull final MeshMessage meshMessage) {
         if (meshMessage instanceof ProxyConfigMessage) {

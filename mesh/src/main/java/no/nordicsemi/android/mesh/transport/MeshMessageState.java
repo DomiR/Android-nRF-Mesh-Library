@@ -143,6 +143,7 @@ abstract class MeshMessageState implements LowerTransportLayerCallbacks {
         CONFIG_MESSAGE_STATE(501),
         //Application message States
         APPLICATION_MESSAGE_STATE(502),
+        GENERIC_ACCESS_MESSAGE_STATE(503),
         VENDOR_MODEL_ACKNOWLEDGED_STATE(1000),
         VENDOR_MODEL_UNACKNOWLEDGED_STATE(1001);
 

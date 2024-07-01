@@ -504,13 +504,13 @@ abstract class NetworkLayer extends LowerTransportLayer {
      * @param message Message
      */
     private SecureUtils.K2Output getK2Output(final Message message) {
-        final NetworkKey networkKey;
-        if (message.getAkf() == APPLICATION_KEY_IDENTIFIER) {
-            networkKey = mNetworkLayerCallbacks.getPrimaryNetworkKey();
-        } else {
-            final int netKeyIndex = message.getApplicationKey().getBoundNetKeyIndex();
-            networkKey = mNetworkLayerCallbacks.getNetworkKey(netKeyIndex);
-        }
+        final NetworkKey networkKey = mNetworkLayerCallbacks.getPrimaryNetworkKey();;
+//        if (message.getAkf() == APPLICATION_KEY_IDENTIFIER) {
+//            networkKey = mNetworkLayerCallbacks.getPrimaryNetworkKey();
+//        } else {
+//            final int netKeyIndex = message.getApplicationKey().getBoundNetKeyIndex();
+//            networkKey = mNetworkLayerCallbacks.getNetworkKey(netKeyIndex);
+//        }
         return networkKey.getTxDerivatives();
     }
 

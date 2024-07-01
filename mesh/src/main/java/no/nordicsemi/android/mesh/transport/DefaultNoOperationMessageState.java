@@ -91,8 +91,13 @@ class DefaultNoOperationMessageState extends MeshMessageState {
      * @param message access message received by the access layer
      */
     private void parseAccessMessage(final AccessMessage message) {
+
+        mMeshStatusCallbacks.onMeshMessageReceived(message.getSrc(), new GenericAccessStatusMessage(message));
+
         final ProvisionedMeshNode node = mInternalTransportCallbacks.getNode(message.getSrc());
         final int opCodeLength = MeshParserUtils.getOpCodeLength(message.getAccessPdu()[0] & 0xFF);
+        if (node == null) return;
+
         //OpCode length
         switch (opCodeLength) {
             case 1:

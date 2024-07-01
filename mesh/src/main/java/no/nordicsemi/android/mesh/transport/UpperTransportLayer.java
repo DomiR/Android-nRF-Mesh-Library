@@ -228,7 +228,7 @@ abstract class UpperTransportLayer extends AccessLayer {
             nonce = createDeviceNonce(aszmic, sequenceNumber, src, dst, ivIndex);
             MeshLogger.verbose(TAG, "Device nonce: " + MeshParserUtils.bytesToHex(nonce, false));
         } else {
-            key = message.getApplicationKey().getKey();
+            key = message.getDeviceKey();
             nonce = createApplicationNonce(aszmic, sequenceNumber, src, dst, ivIndex);
             MeshLogger.verbose(TAG, "Application nonce: " + MeshParserUtils.bytesToHex(nonce, false));
         }
